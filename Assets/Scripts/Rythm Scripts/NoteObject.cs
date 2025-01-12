@@ -1,10 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NoteObject : MonoBehaviour
 {
 
     public bool canBePressed;
+    public bool hasHit = false;
 
     public KeyCode keyPressed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +22,9 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
+                hasHit = true;
                 Destroy(gameObject);
+                GameManager.Instance.NoteHit();
             }
         }
     }
@@ -38,6 +42,9 @@ public class NoteObject : MonoBehaviour
         if (collision.tag == "Activator")
         {
             canBePressed = false;
+
+            if (hasHit == false) { GameManager.Instance.NoteMissed(); }
+
         }
     }
 }

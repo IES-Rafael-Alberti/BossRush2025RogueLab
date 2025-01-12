@@ -5,7 +5,11 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     [SerializeField] private int score;
+    [SerializeField] private int combo;
     [SerializeField] private int health;
+    [SerializeField] private AudioSource actualMusic;
+    [SerializeField] private BeatScroller BS;
+    [SerializeField] private bool startPlaying;
 
 
     public static GameManager Instance
@@ -26,15 +30,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!startPlaying)
+        {
+            if (Input.anyKeyDown)
+            {
+                startPlaying = true;
+                BS.hasStarted = true;
+
+                actualMusic.Play();
+            }
+        }
+    }
+
+    #region Score
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void NoteHit()
+    {
+        Debug.Log("Hit On Time");
+    }
+
+    public void NoteMissed()
+    {
+        Debug.Log("Missed Note");
+    }
+    #endregion
+
     #region Health
     public int GetHealth()
     {
         return health;
-    }
-
-    public int GetScore()
-    {
-        return score;
     }
 
     public void SetHealth(int n, string restore)

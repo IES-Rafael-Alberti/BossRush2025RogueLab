@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class BeatScroller : MonoBehaviour
 {
     public float beatTempo;
 
@@ -15,10 +15,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (!hasStarted)
         {
-            if (Input.anyKeyDown)
+            /*if (Input.anyKeyDown)
             {
                 hasStarted = true;
-            }
+            }*/
         }
         else
         {
