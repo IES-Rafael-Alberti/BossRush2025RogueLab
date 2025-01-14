@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int score;
     [SerializeField] private int combo;
+    [SerializeField] private int maxCombo = 0;
     [SerializeField] private int health;
     [SerializeField] private AudioSource actualMusic;
     [SerializeField] private BeatScroller BS;
@@ -52,12 +53,18 @@ public class GameManager : MonoBehaviour
 
     public void NoteHit()
     {
+        combo += 1;
         Debug.Log("Hit On Time");
     }
 
     public void NoteMissed()
     {
         Debug.Log("Missed Note");
+    }
+
+    public void MaxComboCalc()
+    {
+        if (combo >= maxCombo) { maxCombo = combo; }
     }
     #endregion
 
