@@ -3,9 +3,9 @@ using UnityEngine;
 public class State : IState
 {
 
-    protected MonoBehaviour boss;
+    protected BossController boss;
 
-    public State(MonoBehaviour boss)
+    public State(BossController boss)
     {
         this.boss = boss;
     }
