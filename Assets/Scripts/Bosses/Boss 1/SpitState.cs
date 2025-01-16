@@ -19,6 +19,6 @@ public class SpitState : State
         // instanciar proyectil
         Object.Instantiate(spit, spitPos, Quaternion.identity);
         // siguiente estado
-        //Boss.ChangeStateKey(States.Recovery);
+        actualBoss.ChangeStateKey(States.Stare);
     }
 }

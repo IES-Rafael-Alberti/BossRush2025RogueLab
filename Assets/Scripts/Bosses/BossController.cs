@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] private GameObject spit;
-
-    public float currentHealth;
+    [SerializeField] private float currentHealth;
     private float maxHealth = 200;
 
     State currentState;

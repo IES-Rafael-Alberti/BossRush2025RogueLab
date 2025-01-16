@@ -12,17 +12,17 @@ public class State : IState
 
     public virtual void Entry()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public virtual void Exit()
     {
-        throw new System.NotImplementedException();
+
     }
     
     public virtual void Update()
     {
-        throw new System.NotImplementedException();
+
     }
 
 }

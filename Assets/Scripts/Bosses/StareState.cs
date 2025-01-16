@@ -5,10 +5,13 @@ public class StareState : State
 {
     public StareState(BossController boss) : base(boss) { }
 
+    private Octopus actualBoss;
+
     public override void Entry()
     {
         base.Entry();
-        boss.StartCoroutine(Spit());
+        actualBoss = (Octopus)boss;
+        actualBoss.StartCoroutine(Spit());
         Debug.Log("Follow State Entered");
     }
 
@@ -20,8 +23,8 @@ public class StareState : State
 
     IEnumerator Spit()
     {
-        yield return new WaitForSeconds(5f);
-
-        boss.ChangeStateKey(States.Spit);
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Try spit");
+        actualBoss.ChangeStateKey(States.Spit);
     }
 }
