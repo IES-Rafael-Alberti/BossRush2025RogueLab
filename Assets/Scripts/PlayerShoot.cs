@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject projectilePrefab; // Prefab del proyectil
+    public Transform firePoint;
 
     public float fireRate = 0.5f; // Tiempo entre disparos
     public float nextFireTime = 0f;
@@ -19,6 +21,6 @@ public class PlayerShoot : MonoBehaviour
     void Shoot()
     {
         // Crear proyectil en el firePoint
-        Instantiate(projectilePrefab);
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
     }
 }

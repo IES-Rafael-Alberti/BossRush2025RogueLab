@@ -4,7 +4,6 @@ public class bala : MonoBehaviour
 {
     public float speed = 10f;
     public float lifetime = 5f;
-    public Transform firePoint;  // Referencia al punto de disparo (prefab vacío)
 
     private Vector3 targetDirection;
 
@@ -16,7 +15,7 @@ public class bala : MonoBehaviour
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         // Calcula la dirección hacia el ratón
-        targetDirection = (worldMousePosition - firePoint.position).normalized;
+        targetDirection = (worldMousePosition - transform.position).normalized;
 
         Destroy(gameObject, lifetime); // Destruir proyectil después de un tiempo
     }
