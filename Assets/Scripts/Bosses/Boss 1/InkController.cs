@@ -14,21 +14,19 @@ public class InkController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         colliderInk = GetComponent<SphereCollider>();
 
-        Vector3 direction = (Vector3)player.transform.position - (Vector3)transform.position;
-        rb.AddForce(direction, ForceMode.Impulse);
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+
+        rb.AddForce(direction * force, ForceMode.Impulse);
     }
 
     void Update()
     {
-
-        if (colliderInk.isTrigger == false) { BecomeTrigger(); }        
+    
     }
-
-    IEnumerator BecomeTrigger()
+    private void OnCollisionEnter(Collision collision)
     {
-        yield return new WaitForSeconds(1f);
-        Debug.Log("Become trigger entered");
-        colliderInk.isTrigger = true;
+        Debug.Log("Collision against: " + collision.gameObject.name);
+        Destroy(gameObject);
     }
 
 }

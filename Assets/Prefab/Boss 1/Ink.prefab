@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f3919c752ac354e87f95e68f5818e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.01
+  force: 25
 --- !u!54 &8953343292610956436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
