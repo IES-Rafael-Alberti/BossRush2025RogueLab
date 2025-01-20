@@ -13,6 +13,8 @@ public class PlayerMovem : MonoBehaviour
     public float gravity = -9.8f; // Gravedad personalizada
     private Vector3 velocity; // Velocidad vertical
     private bool isGrounded; // Verificar si está en el suelo
+    private bool right = true;
+    float velocHorizontal = 1;
 
     void Start()
     {
@@ -29,20 +31,29 @@ public class PlayerMovem : MonoBehaviour
         {
             velocity.y = -2f; // Resetear la velocidad vertical al tocar el suelo
         }
+
         // Obtener entrada del jugador
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(horizontal, 0, vertical);
-
+        
+        if (horizontal > 0)
+        {
+            right = true;
+            velocHorizontal = 1;
+        }
+        else if (horizontal < 0)
+        {
+            right = false;
+            velocHorizontal = -1;
+        }
+        Vector3 movement = new Vector3(velocHorizontal, 0, 0);
         // Mover al personaje
         if (movement.magnitude > 0.1f)
         {
+            
             // Rotación hacia la dirección del movimiento
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            // Mover al personaje
-            characterController.Move(movement * speed * Time.deltaTime);
         }
 
         // Salto
@@ -58,7 +69,6 @@ public class PlayerMovem : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
 
         // Configurar el parámetro de velocidad para animaciones
-        Debug.Log(movement.magnitude); 
         animator.SetFloat("Speed", movement.magnitude);
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class bala : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 0;
     public float lifetime = 5f;
 
     private Vector3 targetDirection;
@@ -11,7 +11,7 @@ public class bala : MonoBehaviour
     {
         // Obtén la dirección hacia el ratón en el mundo
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 10f; // Ajusta la distancia de la cámara
+        mousePosition.z = 15f; // Ajusta la distancia de la cámara
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         // Calcula la dirección hacia el ratón
