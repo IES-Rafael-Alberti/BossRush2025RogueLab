@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Bala
   - Activator
   - Enemy
+  - EnemiBala
   layers:
   - Default
   - TransparentFX
