@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InkController : MonoBehaviour
 {
+
+    //Esta clase es un script que controla el movimiento de la tinta del pulpo al instanciar su prefab
     private GameObject player;
     private Rigidbody rb;
     private SphereCollider colliderInk;
@@ -19,10 +21,6 @@ public class InkController : MonoBehaviour
         rb.AddForce(direction * force, ForceMode.Impulse);
     }
 
-    void Update()
-    {
-    
-    }
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision against: " + collision.gameObject.name);

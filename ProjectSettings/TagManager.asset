@@ -8,6 +8,8 @@ TagManager:
   - Activator
   - Enemy
   - EnemiBala
+  - EnemyBullet
+  - Bullet
   layers:
   - Default
   - TransparentFX

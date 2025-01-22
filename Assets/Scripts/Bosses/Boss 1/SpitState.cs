@@ -13,12 +13,12 @@ public class SpitState : State
         base.Entry();
         actualBoss = (Octopus)boss;
         spit = actualBoss.GetSpit();
-        spitPos = (Vector2)boss.transform.position + (new Vector2(0, 0.7f));
+        spitPos = (Vector2)boss.transform.position + (new Vector2(0, 0.7f)); //Posición donde se instancia el prefab
         Debug.Log("Spit State Entered");
 
-        // instanciar proyectil
+        // Instancia la tinta
         Object.Instantiate(spit, spitPos, Quaternion.identity);
-        // siguiente estado
+        // Siguiente estado
         actualBoss.ChangeStateKey(States.Stare);
     }
 }

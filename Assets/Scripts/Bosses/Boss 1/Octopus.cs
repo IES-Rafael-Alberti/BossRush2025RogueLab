@@ -17,8 +17,8 @@ public class Octopus : BossController
         currentState.Entry();
         //      crear lista de estados
         Debug.Log("Initial Octopus");
-        statesDict.Add(States.Stare, currentState);
-        statesDict.Add(States.Spit, new SpitState(this));
+        statesDict.Add(States.Stare, currentState); //Estado mirar
+        statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
     }
 
     public new void ChangeStateKey(States newState)
