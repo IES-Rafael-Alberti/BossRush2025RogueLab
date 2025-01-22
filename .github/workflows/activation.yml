@@ -1,25 +1,57 @@
-name: Acquire activation file
+name: Build and Deploy Unity Project to Itch.io
 
 on:
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  request-activation-file:
-    name: Request manual activation file 🔑
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # 1. Checkout del repositorio
+      
 
-      - name: Generate activation file
-        uses: game-ci/unity-activate@v4
-        with:
-          unityVersion: 6000.0.34f1
-          activationFilePath: ./Unity_v6000.x.alf
+    name: Checkout code
+          uses: actions/checkout@v4
 
-      - name: Upload activation file
-        uses: actions/upload-artifact@v3
-        with:
-          name: Unity activation file
-          path: ./Unity_v6000.x.alf
+
+      # 2. Configurar Unity
+      
+
+    name: Set up Unity
+          uses: game-ci/unity-setup@v2
+          with:
+            unityVersion: 6000.0.34f1
+
+
+      # 3. Construye el proyecto en Unity
+      
+
+    name: Super InterGalactic Death Tournament
+          env:
+            UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          run: |
+            mkdir -p Builds/WebGL
+            unity-editor -quit -batchmode -buildTarget WebGL -projectPath . -executeMethod BuildCommand.BuildWebGL
+
+
+      # 4. Instalar Butler
+      
+
+    name: Install Butler
+          run: |
+            curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/latest/archive/default
+            unzip butler.zip -d ~/bin
+            chmod +x ~/bin/butler
+            echo "::add-path::~/bin"
+
+
+      # 5. Subir el build a Itch.io
+      
+
+    name: Deploy to Itch.io
+          env:
+            BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          run: butler push ./Builds/WebGL roguelab/super-intergalactic-death-tournament:web
