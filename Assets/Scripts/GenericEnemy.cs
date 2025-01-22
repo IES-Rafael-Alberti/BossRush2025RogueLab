@@ -1,10 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
-public class enemie : MonoBehaviour
+public class GenericEnemy : MonoBehaviour
 {
     // Color al que se cambiará el cubo cuando sea tocado por la bala
-    public Color colorImpacto = Color.red;
-
     private Renderer cuboRenderer;
 
     void Start()
@@ -16,14 +15,21 @@ public class enemie : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Verificar si el objeto que colisiona tiene el tag "Bala"
-        if (collision.gameObject.CompareTag("Bala"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             Debug.Log(cuboRenderer);
             // Cambiar el color del cubo al colorImpacto
             if (cuboRenderer != null)
             {
-                cuboRenderer.material.color = colorImpacto;
+                cuboRenderer.material.color = Color.red; //Color impacto
+                FrameI();
+                cuboRenderer.material.color = Color.white; //Color original
             }
         }
+    }
+
+    IEnumerator FrameI()
+    {
+        yield return 1f;
     }
 }

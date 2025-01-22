@@ -76,7 +76,7 @@ public class PlayerShoot : MonoBehaviour
         {
             parry = true;
         }
-        if (collision.gameObject.CompareTag("EnemiBala") && !parry)
+        if (collision.gameObject.CompareTag("EnemyBullet") && !parry)
         {
             playerLife--;
         }
