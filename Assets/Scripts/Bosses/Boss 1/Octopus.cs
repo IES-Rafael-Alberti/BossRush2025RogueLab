@@ -7,6 +7,8 @@ public class Octopus : BossController
 {
 
     [SerializeField] private GameObject spit;
+    private float currentHealth; //Vida actual
+    [SerializeField] private float maxHealth = 10; //Vida m�xima
     private Renderer BossRenderer;
 
     State currentState;
@@ -15,7 +17,7 @@ public class Octopus : BossController
     void Start()
     {
         BossRenderer = GetComponent<Renderer>();
-
+        currentHealth = maxHealth;
         currentState = new StareState(this);
         currentState.Entry();
         //      Crear lista de estados
@@ -53,12 +55,23 @@ public class Octopus : BossController
         // Verificar si el objeto que colisiona tiene el tag "Bala"
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log(BossRenderer);
+            Debug.Log(currentHealth);
+            currentHealth--;
             // Cambiar el color del cubo al colorImpacto
             if (BossRenderer != null)
             {
                 BossRenderer.material.color = Color.red; //Color impacto
             }
+            IsDead();
+        }
+    }
+
+    private void IsDead()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("Muerto");
         }
     }
 

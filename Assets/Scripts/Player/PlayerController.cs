@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -9,21 +10,22 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 720f;
 
     private CharacterController characterController;
+    [SerializeField] private int flashNumbers;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private PlayerShoot playerShoot;
+    private PlayerShoot playerShoot;
 
     private Animator animator;
 
     public float jumpForce = 5f; // Fuerza del salto
     public float gravity = -9.8f; // Gravedad personalizada
     private Vector3 velocity; // Velocidad vertical
-    private bool isGrounded; // Verificar si está en el suelo
+    private bool isGrounded; // Verificar si estï¿½ en el suelo
     private bool right = true;
     float velocHorizontal = 1;
 
     void Start()
     {
-        // Obtén referencias al CharacterController y al Animator
+        // Obtï¿½n referencias al CharacterController y al Animator
         characterController = GetComponent<CharacterController>();
         playerShoot = GetComponent<PlayerShoot>();
         animator = GetComponent<Animator>();
@@ -56,7 +58,7 @@ public class PlayerController : MonoBehaviour
         if (movement.magnitude > 0.1f)
         {
             
-            // Rotación hacia la dirección del movimiento
+            // Rotaciï¿½n hacia la direcciï¿½n del movimiento
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
@@ -65,10 +67,10 @@ public class PlayerController : MonoBehaviour
         // Aplicar gravedad
         velocity.y += gravity * Time.deltaTime;
 
-        // Mover al jugador según la velocidad vertical
+        // Mover al jugador segï¿½n la velocidad vertical
         characterController.Move(velocity * Time.deltaTime);
 
-        // Configurar el parámetro de velocidad para animaciones
+        // Configurar el parï¿½metro de velocidad para animaciones
         animator.SetFloat("Speed", movement.magnitude);
     }
 
@@ -92,14 +94,32 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
-        if ((collision.gameObject.CompareTag("EnemyBullet") && playerShoot.IsParrying()))
+        
+        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()))
         {
+            Debug.Log("Lost hp");
+            Debug.Log(gameManager.GetHealth());
             gameManager.SetHealth(1, null);
             IsDead();
         }
-        Debug.Log(gameManager.GetHealth());
+        
     }
+
+    /*private IEnumerator Invurnerability()
+    {
+        Physics2D.IgnoreLayerCollision(6, 3, true);
+
+        for (int i = 0; i < flashNumbers; i++)
+        {
+            spriteRenderer.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(1);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(1);
+        }
+
+        Physics2D.IgnoreLayerCollision(6, 3, false);
+
+    }*/
 
     private void IsDead()
     {

@@ -4,17 +4,13 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
 
-    //Clase genérica para todos los bosses
-
-    private float currentHealth; //Vida actual
-    [SerializeField] private float maxHealth = 10; //Vida máxima
+    //Clase genï¿½rica para todos los bosses
 
     State currentState;
     Dictionary<States, State> statesDict = new Dictionary<States, State>();
     void Start()
     {
         // Inicializar datos boss
-        currentHealth = maxHealth;
         
         // Inicializar estados:
         // Definir estado inicial

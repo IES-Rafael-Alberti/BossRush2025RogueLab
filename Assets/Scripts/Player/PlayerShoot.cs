@@ -23,13 +23,13 @@ public class PlayerShoot : MonoBehaviour
     public Transform eniemiPosition;
 
     public Image img1;
-    public Image img2;     // Imagen que se mostrará al disparar
+    public Image img2;     // Imagen que se mostrarï¿½ al disparar
 
     private IMG shootImage = new IMG(false);
 
     private IMG shootImage2 = new IMG(false);
 
-    public float displayTime = 0.5f;    // Tiempo que la imagen estará visible
+    public float displayTime = 0.5f;    // Tiempo que la imagen estarï¿½ visible
    
 
     private bool parry = false;
@@ -49,13 +49,13 @@ public class PlayerShoot : MonoBehaviour
                 nextFireTime = Time.time + fireRate;
             }
 
-        // Ocultar la imagen después de un tiempo
+        // Ocultar la imagen despuï¿½s de un tiempo
         if (shootImage.isImageVisible && Time.time > nextFireTime - fireRate + displayTime)
         {
             HideShootImage(shootImage);
             ShowShootImage(shootImage2);
         }
-        // Ocultar la imagen después de un tiempo
+        // Ocultar la imagen despuï¿½s de un tiempo
         if (shootImage2.isImageVisible && Time.time > nextFireTime - fireRate + displayTime)
         {
             HideShootImage(shootImage2);
