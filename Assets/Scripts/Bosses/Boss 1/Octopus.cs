@@ -7,15 +7,18 @@ public class Octopus : BossController
 {
 
     [SerializeField] private GameObject spit;
+    private Renderer BossRenderer;
 
     State currentState;
     Dictionary<States, State> statesDict = new Dictionary<States, State>();
+
     void Start()
     {
+        BossRenderer = GetComponent<Renderer>();
 
         currentState = new StareState(this);
         currentState.Entry();
-        //      crear lista de estados
+        //      Crear lista de estados
         Debug.Log("Initial Octopus");
         statesDict.Add(States.Stare, currentState); //Estado mirar
         statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
@@ -44,6 +47,21 @@ public class Octopus : BossController
     {
         return spit;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Verificar si el objeto que colisiona tiene el tag "Bala"
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Debug.Log(BossRenderer);
+            // Cambiar el color del cubo al colorImpacto
+            if (BossRenderer != null)
+            {
+                BossRenderer.material.color = Color.red; //Color impacto
+            }
+        }
+    }
+
 }
 
 public enum States

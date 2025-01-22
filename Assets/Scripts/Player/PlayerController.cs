@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -8,7 +9,11 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 720f;
 
     private CharacterController characterController;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private PlayerShoot playerShoot;
+
     private Animator animator;
+
     public float jumpForce = 5f; // Fuerza del salto
     public float gravity = -9.8f; // Gravedad personalizada
     private Vector3 velocity; // Velocidad vertical
@@ -20,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         // Obtén referencias al CharacterController y al Animator
         characterController = GetComponent<CharacterController>();
+        playerShoot = GetComponent<PlayerShoot>();
         animator = GetComponent<Animator>();
     }
 
@@ -56,12 +62,6 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        // Salto
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-        }
-
         // Aplicar gravedad
         velocity.y += gravity * Time.deltaTime;
 
@@ -71,4 +71,44 @@ public class PlayerController : MonoBehaviour
         // Configurar el parámetro de velocidad para animaciones
         animator.SetFloat("Speed", movement.magnitude);
     }
+
+    private void FixedUpdate()
+    {
+        // Salto
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetBool("jump", true);
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+        }
+        if (!isGrounded)
+        {
+            animator.SetBool("jump", true);
+        }
+        else
+        {
+            animator.SetBool("jump", false);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if ((collision.gameObject.CompareTag("EnemyBullet") && playerShoot.IsParrying()))
+        {
+            gameManager.SetHealth(1, null);
+            IsDead();
+        }
+        Debug.Log(gameManager.GetHealth());
+    }
+
+    private void IsDead()
+    {
+        if (gameManager.GetHealth() <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("Muerto");
+        }
+    }
+
+
 }

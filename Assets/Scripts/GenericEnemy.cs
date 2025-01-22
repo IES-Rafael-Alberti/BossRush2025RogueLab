@@ -22,14 +22,8 @@ public class GenericEnemy : MonoBehaviour
             if (cuboRenderer != null)
             {
                 cuboRenderer.material.color = Color.red; //Color impacto
-                FrameI();
-                cuboRenderer.material.color = Color.white; //Color original
             }
         }
     }
 
-    IEnumerator FrameI()
-    {
-        yield return 1f;
-    }
 }

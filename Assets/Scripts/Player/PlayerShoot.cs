@@ -43,18 +43,11 @@ public class PlayerShoot : MonoBehaviour
         shootImage.image = img1;
         shootImage2.image = img2;
 
-        if (playerLife > 0)
-        {
-            if (Input.GetButton("Fire1") && Time.time >= nextFireTime && characterController.isGrounded)
+        if (Input.GetButton("Fire1") && Time.time >= nextFireTime && characterController.isGrounded)
             {
                 Shoot();
                 nextFireTime = Time.time + fireRate;
             }
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
 
         // Ocultar la imagen después de un tiempo
         if (shootImage.isImageVisible && Time.time > nextFireTime - fireRate + displayTime)
@@ -76,15 +69,15 @@ public class PlayerShoot : MonoBehaviour
         {
             parry = true;
         }
-        if (collision.gameObject.CompareTag("EnemyBullet") && !parry)
-        {
-            playerLife--;
-        }
-        else
+        if (!(collision.gameObject.CompareTag("EnemyBullet") && !parry))
         {
             collision.rigidbody.AddForce(eniemiPosition.position * 5, ForceMode.Impulse);
         }
-        Debug.Log(playerLife);
+    }
+
+    public bool IsParrying()
+    {
+        return parry;
     }
 
     void Shoot()

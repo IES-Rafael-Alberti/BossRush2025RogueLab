@@ -6,8 +6,8 @@ public class BossController : MonoBehaviour
 
     //Clase genérica para todos los bosses
 
-    [SerializeField] private float currentHealth; //Vida actual
-    private float maxHealth = 200; //Vida máxima
+    private float currentHealth; //Vida actual
+    [SerializeField] private float maxHealth = 10; //Vida máxima
 
     State currentState;
     Dictionary<States, State> statesDict = new Dictionary<States, State>();
@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
     {
         // Inicializar datos boss
         currentHealth = maxHealth;
-
+        
         // Inicializar estados:
         // Definir estado inicial
         currentState = new StareState(this);
@@ -49,8 +49,4 @@ public class BossController : MonoBehaviour
         currentState.Entry();
     }
 
-    /*public GameObject GetSpit()
-    {
-        return spit;
-    }*/
 }
