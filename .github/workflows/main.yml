@@ -1,0 +1,8 @@
+# Publish to Itch.IO
+- uses: manleydev/butler-publish-itchio-action@master
+  env:
+    BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+    CHANNEL: ${{ matrix.targetPlatform }}
+    ITCH_GAME: super-intergalactic-death-tournament
+    ITCH_USER: roguelab
+    PACKAGE: build/${{ matrix.targetPlatform }}
