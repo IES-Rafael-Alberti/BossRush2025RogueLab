@@ -1,0 +1,17 @@
+- uses: manleydev/butler-publish-itchio-action@master
+  env:
+    BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+    CHANNEL: ${{ matrix.targetPlatform }}
+    ITCH_GAME: super-intergalactic-death-tournament
+    ITCH_USER: roguelab
+    PACKAGE: build/${{ matrix.targetPlatform }}
+  buildForAllSupportedPlatforms:
+    name: Build and Deploy for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false  
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64
+          - WebGL
+          - StandaloneOSX
