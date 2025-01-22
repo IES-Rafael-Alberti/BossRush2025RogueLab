@@ -1,4 +1,3 @@
-# Publish to Itch.IO
 - uses: manleydev/butler-publish-itchio-action@master
   env:
     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
