@@ -70,7 +70,7 @@ jobs:
        working-directory: build/WebGL
 
      - name: Deploy 🚀
-       uses: JamesIves/github-pages-deploy-action@4.1.4
+       uses: JamesIves/github-pages-deploy-action@4.3.0
        with:
          branch: itch-io
          folder: build/WebGL
