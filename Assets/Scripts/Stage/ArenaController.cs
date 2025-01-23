@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class ArenaController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float speed;
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.rotation = Quaternion.Euler(0f, gameObject.transform.rotation.eulerAngles.y + speed, 0f);
     }
 }
