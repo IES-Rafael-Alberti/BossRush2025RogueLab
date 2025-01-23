@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations.meta
 guid: 559683d9c56da704691f26247ecab80e
+========
+guid: e45a2f59549c40c48b4ec84ac9c42b7a
+>>>>>>>> 6-menú:Assets/Imports.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
