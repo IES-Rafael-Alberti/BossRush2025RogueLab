@@ -64,6 +64,12 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        // Salto
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+        }
+
         // Aplicar gravedad
         velocity.y += gravity * Time.deltaTime;
 
@@ -76,20 +82,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Salto
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetBool("jump", true);
-            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-        }
-        if (!isGrounded)
-        {
-            animator.SetBool("jump", true);
-        }
-        else
-        {
-            animator.SetBool("jump", false);
-        }
+        if (!isGrounded) { animator.SetBool("jump", true); }
+        else { animator.SetBool("jump", false); }
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -1,17 +1,10 @@
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class ArenaMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public CharacterController characterController;
+
     private Vector3 rotationSpeed = new Vector3(0, 0, 0); // Velocidad de rotación en cada eje
     private bool right = true;
-    void Start()
-    {
-       
-    }
-
 
     void Update()
     {
@@ -23,7 +16,7 @@ public class ArenaMovement : MonoBehaviour
         }
         else if (horizontalInput < 0)
         {
-            right = false;   
+            right = false;
         }
 
         if (right)
@@ -34,7 +27,7 @@ public class ArenaMovement : MonoBehaviour
         {
             rotationSpeed.y = -50;
         }
-       
+
         transform.Rotate(rotationSpeed * Time.deltaTime);
     }
 }

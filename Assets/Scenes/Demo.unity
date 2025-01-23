@@ -1314,7 +1314,7 @@ MonoBehaviour:
   rotationSpeed: 720
   flashNumbers: 0
   gameManager: {fileID: 1017463789}
-  jumpForce: 5
+  jumpForce: 1.5
   gravity: -9.8
 --- !u!95 &532484361
 Animator:
@@ -4197,7 +4197,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6276a10cc610e5947b0d205afda3fc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 1803885840}
+--- !u!114 &2056242096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056242094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8270e2b3ff7004188683f82fa4f38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2091908983
 GameObject:
   m_ObjectHideFlags: 0
@@ -4364,6 +4375,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6c7b74954792c240845b7f279b16fce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2056242095}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6c7b74954792c240845b7f279b16fce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2056242096}
     - targetCorrespondingSourceObject: {fileID: -9073113897457752011, guid: a6c7b74954792c240845b7f279b16fce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 768461557}
