@@ -1,17 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
 guid: 52f91918018f7f14db1c641e11d3eacc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
-========
-guid: f1ccdfc6fdbf336439901f72319338e8
-TextureImporter:
-  internalIDToNameTable: []
-  externalObjects: {}
-  serializedVersion: 11
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -42,7 +34,6 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
     filterMode: 1
     aniso: 1
     mipBias: 0
@@ -50,18 +41,9 @@ TextureImporter:
     wrapV: 1
     wrapW: 0
   nPOTScale: 0
-========
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
-  nPOTScale: 1
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -80,23 +62,17 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
-========
-  applyGammaDecoding: 0
-  platformSettings:
-  - serializedVersion: 3
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,16 +80,12 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
   - serializedVersion: 4
-========
-  - serializedVersion: 3
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,18 +93,12 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
   - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
-========
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 1024
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,37 +113,18 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
     spriteID: 5e97eb03825dee720800000000000000
-========
-    spriteID: 
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
     spriteCustomMetadata:
       entries: []
     nameFileIdTable: {}
   mipmapLimitGroupName: 
-========
-  spritePackingTag: 
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-<<<<<<<< HEAD:Assets/Light/light_gun-removebg-preview.png.meta
-========
-AssetOrigin:
-  serializedVersion: 1
-  productId: 178953
-  packageName: '*FREE* Skyboxes - Space'
-  packageVersion: 1.0
-  assetPath: Assets/Free Skyboxes - Space/SBS Space 2/Small/Textures/Back_Skybox_Space
-    2 Small.png
-  uploadId: 405008
->>>>>>>> 6-menú:Assets/Imports/Skybox/Textures/Back_Skybox_Space 2 Small.png.meta
