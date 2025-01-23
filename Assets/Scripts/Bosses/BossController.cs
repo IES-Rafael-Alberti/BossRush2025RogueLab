@@ -20,12 +20,6 @@ public class BossController : MonoBehaviour
         //statesDict.Add(States.Spit, new SpitState(this));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ChangeStateKey(States newState)
     {
         if (statesDict.ContainsKey(newState))
