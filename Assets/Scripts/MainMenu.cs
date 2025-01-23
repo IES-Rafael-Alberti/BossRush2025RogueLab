@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("Arena");
+        SceneManager.LoadScene("Demo");
     }
 
     public void Settings()
