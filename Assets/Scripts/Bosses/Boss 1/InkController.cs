@@ -24,7 +24,7 @@ public class InkController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision against: " + collision.gameObject.name);
-        Destroy(gameObject);
+        
     }
 
 }
