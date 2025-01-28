@@ -64,6 +64,11 @@ public class Octopus : BossController
             }
             IsDead();
         }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+        }
     }
 
     private void IsDead()
