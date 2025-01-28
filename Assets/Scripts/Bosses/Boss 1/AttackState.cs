@@ -1,33 +1,39 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-
-public class SpitState : State
+public class AttackState : State
 {
-    public SpitState(BossController boss) : base(boss) { }
+    public AttackState(BossController boss) : base(boss) { }
 
-    private GameObject spit;
-    private Vector3 spitPos;
-    private Quaternion spitRotation;
     private Octopus actualBoss;
+    private Animator anim;
+    private string Attack = "Attack1";
 
     public override void Entry()
     {
         base.Entry();
         actualBoss = (Octopus)boss;
-        spit = actualBoss.GetSpit();
-        spitPos = boss.transform.position + (new Vector3(0, 2.5f, 0)); //Posici�n donde se instancia el prefab
-        spitRotation = boss.transform.rotation;
-        Debug.Log("Spit State Entered");
+        Debug.Log("Attack State Entered");
+        anim = actualBoss.GetComponent<Animator>();
+        // Animación
+        anim.SetTrigger(Attack);
+    }
 
-        // Instancia la tinta
-        Debug.Log(spitPos + " , " + spitRotation);
-        UnityEngine.Object.Instantiate(spit, spitPos, Quaternion.identity);
-        // Siguiente estado
-        States randomState = GetRandomEnumValue<States>(States.Spit);
-        actualBoss.ChangeStateKey(randomState);
+    public override void Update()
+    {
+        // Verificar si la animación  ha terminado
+        Debug.Log("Animación");
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.normalizedTime >= 1f && !anim.IsInTransition(0))
+        {
+            Debug.Log("Animación acabada.");
+            anim.ResetTrigger("Attack1");
+            // Cambio de estado
+            States randomState = GetRandomEnumValue<States>(States.Attack);
+            actualBoss.ChangeStateKey(randomState);
+        }
     }
 
     T GetRandomEnumValue<T>(T exclude) where T : Enum

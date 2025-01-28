@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class State : IState
 {
-    // Interfaz de la máquina de estado de los bosses
+    // Interfaz de la mï¿½quina de estado de los bosses
     protected BossController boss;
 
     public State(BossController boss)

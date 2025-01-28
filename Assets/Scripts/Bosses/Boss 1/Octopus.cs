@@ -10,6 +10,7 @@ public class Octopus : BossController
     private float currentHealth; //Vida actual
     [SerializeField] private float maxHealth = 10; //Vida m�xima
     private Renderer BossRenderer;
+    
 
     State currentState;
     Dictionary<States, State> statesDict = new Dictionary<States, State>();
@@ -22,8 +23,18 @@ public class Octopus : BossController
         currentState.Entry();
         //      Crear lista de estados
         Debug.Log("Initial Octopus");
-        statesDict.Add(States.Stare, currentState); //Estado mirar
+        //statesDict.Add(States.Stare, currentState); //Estado mirar
+        statesDict.Add(States.Attack, new AttackState(this)); //Estado atacar
         statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
+        statesDict.Add(States.Sweep, new SweepState(this)); //Estado barrer
+    }
+
+    void Update()
+    {
+        if (currentState != null)
+        {
+            currentState.Update();
+        }
     }
 
     public new void ChangeStateKey(States newState)
@@ -84,5 +95,5 @@ public class Octopus : BossController
 
 public enum States
 {
-    Stare, Spit, Sweep
+    Spit, Attack, Sweep
 }
