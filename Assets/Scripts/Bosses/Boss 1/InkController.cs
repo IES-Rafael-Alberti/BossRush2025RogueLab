@@ -15,15 +15,26 @@ public class InkController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
         colliderInk = GetComponent<SphereCollider>();
-
         Vector3 direction = (player.transform.position - transform.position).normalized;
 
         rb.AddForce(direction * force, ForceMode.Impulse);
+
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+
+        rb.AddForce(direction, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision against: " + collision.gameObject.name);
+        if (!collision.collider.CompareTag("Enemy"))
+        {
+            Debug.Log("Collision against: " + collision.gameObject.name);
+            Destroy(gameObject);
+        }
         
     }
 

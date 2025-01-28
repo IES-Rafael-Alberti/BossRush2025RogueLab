@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()))
+        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")))
         {
             Debug.Log("Lost hp");
             Debug.Log(gameManager.GetHealth());

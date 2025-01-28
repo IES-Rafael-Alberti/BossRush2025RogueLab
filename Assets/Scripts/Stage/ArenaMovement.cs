@@ -4,7 +4,7 @@ using UnityEngine;
 public class ArenaMovement : MonoBehaviour
 {
 
-    private Vector3 rotationSpeed = new Vector3(0, 0, 0); // Velocidad de rotación en cada eje
+    private Vector3 rotationSpeed = new Vector3(0, 0, 0); // Velocidad de rotaciï¿½n en cada eje
     private bool right = true;
     private GameObject cube;
     private Vector3 positionCube;
@@ -14,7 +14,7 @@ public class ArenaMovement : MonoBehaviour
     private void Start()
     {
         cube = GameObject.Find("CubeParry");
-        positionCube = cube.transform.position;
+        //positionCube = cube.transform.position;
     }
 
     void Update()
@@ -40,14 +40,14 @@ public class ArenaMovement : MonoBehaviour
         }
 
         transform.Rotate(rotationSpeed * Time.deltaTime);
-        if (!loopOn)
+        /*if (!loopOn)
         {
             StartCoroutine(InstantiateCube(secondsCube));
-        }
+        }*/
         
     }
 
-    private IEnumerator InstantiateCube(int seconds)
+    /*private IEnumerator InstantiateCube(int seconds)
     {
         loopOn = true;
         Debug.Log("Enumerator Cube");
@@ -57,5 +57,5 @@ public class ArenaMovement : MonoBehaviour
         cube = GameObject.Find("CubeParry(Clone)");
         cube.name = "CubeParry";
         loopOn = false;
-    }
+    }*/
 }
