@@ -15,7 +15,7 @@ public class SpitState : State
     private Octopus actualBoss;
     private GameObject spitInstance;
     private float timer = 0f;
-    private float duration = 3f;
+    private float duration = 2f;
 
     public override void Entry()
     {
@@ -41,8 +41,7 @@ public class SpitState : State
         {
             Debug.Log("Spit State completed. Changing state...");
             Exit();
-            States randomState = GetRandomEnumValue<States>(States.Spit);
-            actualBoss.ChangeStateKey(randomState);
+            actualBoss.ChangeStateKey(States.Stare);
         }
     }
 }

@@ -40,8 +40,7 @@ public class SweepState : State
             anim.ResetTrigger("Sweep2");
             // Cambio de estado
             Exit();
-            States randomState = GetRandomEnumValue<States>(States.Sweep);
-            actualBoss.ChangeStateKey(randomState);
+            actualBoss.ChangeStateKey(States.Stare);
         }
     }
 }

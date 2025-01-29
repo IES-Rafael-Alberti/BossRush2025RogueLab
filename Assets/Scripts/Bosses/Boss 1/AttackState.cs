@@ -38,8 +38,7 @@ public class AttackState : State
             anim.ResetTrigger("Attack1");
             // Cambio de estado
             Exit();
-            States randomState = GetRandomEnumValue<States>(States.Attack);
-            actualBoss.ChangeStateKey(randomState);
+            actualBoss.ChangeStateKey(States.Stare);
         }
     }
 
