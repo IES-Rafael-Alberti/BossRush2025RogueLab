@@ -20,13 +20,13 @@ public class Octopus : BossController
         BossRenderer = GetComponent<Renderer>();
         currentHealth = maxHealth;
         currentState = new StareState(this);
-        currentState.Entry();
         //      Crear lista de estados
         Debug.Log("Initial Octopus");
-        //statesDict.Add(States.Stare, currentState); //Estado mirar
+        statesDict.Add(States.Stare, currentState); //Estado mirar
         statesDict.Add(States.Attack, new AttackState(this)); //Estado atacar
-        statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
+        //statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
         statesDict.Add(States.Sweep, new SweepState(this)); //Estado barrer
+        currentState.Entry();
     }
 
     void Update()
@@ -95,5 +95,5 @@ public class Octopus : BossController
 
 public enum States
 {
-    Spit, Attack, Sweep
+    Stare, Attack, Sweep
 }

@@ -8,6 +8,8 @@ public class BossController : MonoBehaviour
 
     State currentState;
     Dictionary<States, State> statesDict = new Dictionary<States, State>();
+
+
     void Start()
     {
         // Inicializar datos boss

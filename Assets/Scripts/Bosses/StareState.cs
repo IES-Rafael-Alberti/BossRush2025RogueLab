@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StareState : State
@@ -11,20 +13,27 @@ public class StareState : State
     {
         base.Entry();
         actualBoss = (Octopus)boss;
-        actualBoss.StartCoroutine(Spit());
         Debug.Log("Follow State Entered");
+        States randomState = GetRandomEnumValue<States>(States.Stare);
+        actualBoss.ChangeStateKey(randomState);
     }
 
-    public override void Update()
+    T GetRandomEnumValue<T>(T exclude) where T : Enum
     {
-        base.Update();
-        //if (Boss.GetHealthPercentage() < .5f) Boss.ChangeStateKey(States.Rage);
-    }
+        Array values = Enum.GetValues(typeof(T)); // Obtiene todos los valores del enum
 
-    IEnumerator Spit()
-    {
-        yield return new WaitForSeconds(2f);
-        Debug.Log("Try spit");
-        actualBoss.ChangeStateKey(States.Spit);
+        // Filtrar los valores para excluir el estado actual
+        List<T> filteredValues = new List<T>();
+        foreach (T value in values)
+        {
+            if (!value.Equals(exclude))
+            {
+                filteredValues.Add(value);
+            }
+        }
+
+        // Generar un índice aleatorio en la lista filtrada
+        int randomIndex = UnityEngine.Random.Range(0, filteredValues.Count);
+        return filteredValues[randomIndex]; // Retorna un valor aleatorio excluyendo el estado actual
     }
 }
