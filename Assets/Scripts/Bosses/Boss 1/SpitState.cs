@@ -23,20 +23,14 @@ public class SpitState : State
         spitPos = boss.transform.position + (new Vector3(0, 2.5f, 0)); //Posici�n donde se instancia el prefab
         spitRotation = boss.transform.rotation;
         Debug.Log("Spit State Entered");
-        
-        // Verifica que el objeto fue instanciado correctamente
-        if (spitInstance != null)
-        {
-            Debug.Log("Spit instantiated successfully: " + spitInstance.name);
-            //States randomState = GetRandomEnumValue<States>(States.Spit);
-            //actualBoss.ChangeStateKey(randomState);
-        }
-        else
-        {
-            // Instancia la tinta
-            Debug.Log(spitPos + " , " + spitRotation);
-            spitInstance = UnityEngine.Object.Instantiate(spit, spitPos, Quaternion.identity);
-        }
+
+        // Instancia la tinta
+        Debug.Log(spitPos + " , " + spitRotation);
+        spitInstance = UnityEngine.Object.Instantiate(spit, spitPos, Quaternion.identity);
+
+        Debug.Log("Spit instantiated successfully: " + spitInstance.name);
+        States randomState = GetRandomEnumValue<States>(States.Spit);
+        actualBoss.ChangeStateKey(randomState);
     }
 
     T GetRandomEnumValue<T>(T exclude) where T : Enum

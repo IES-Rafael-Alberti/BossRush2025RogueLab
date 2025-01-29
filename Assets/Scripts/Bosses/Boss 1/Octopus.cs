@@ -24,7 +24,7 @@ public class Octopus : BossController
         Debug.Log("Initial Octopus");
         statesDict.Add(States.Stare, currentState); //Estado mirar
         statesDict.Add(States.Attack, new AttackState(this)); //Estado atacar
-        //statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
+        statesDict.Add(States.Spit, new SpitState(this)); //Estado escupir
         statesDict.Add(States.Sweep, new SweepState(this)); //Estado barrer
         currentState.Entry();
     }
@@ -95,5 +95,5 @@ public class Octopus : BossController
 
 public enum States
 {
-    Stare, Attack, Sweep
+    Stare, Spit, Attack, Sweep
 }
