@@ -14,6 +14,8 @@ public class SpitState : State
     private Quaternion spitRotation;
     private Octopus actualBoss;
     private GameObject spitInstance;
+    private float timer = 0f;
+    private float duration = 3f;
 
     public override void Entry()
     {
@@ -27,10 +29,21 @@ public class SpitState : State
         // Instancia la tinta
         Debug.Log(spitPos + " , " + spitRotation);
         spitInstance = UnityEngine.Object.Instantiate(spit, spitPos, Quaternion.identity);
-
         Debug.Log("Spit instantiated successfully: " + spitInstance.name);
-        States randomState = GetRandomEnumValue<States>(States.Spit);
-        actualBoss.ChangeStateKey(randomState);
+        timer = 0f; // Reinicia el contador
+    }
+
+    public override void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= duration)
+        {
+            Debug.Log("Spit State completed. Changing state...");
+            Exit();
+            States randomState = GetRandomEnumValue<States>(States.Spit);
+            actualBoss.ChangeStateKey(randomState);
+        }
     }
 
     T GetRandomEnumValue<T>(T exclude) where T : Enum

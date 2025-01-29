@@ -9,6 +9,8 @@ public class SweepState : State
     private Octopus actualBoss;
     private Animator anim;
     private string Sweep;
+    private float timer = 0f;
+    private float duration = 2f;
 
     public override void Entry()
     {
@@ -20,19 +22,24 @@ public class SweepState : State
         int num = UnityEngine.Random.Range(1, 3);
         Sweep = num == 1 ? "Sweep1" : "Sweep2";
         anim.SetTrigger(Sweep);
+        timer = 0f; // Reinicia el contador
     }
 
     public override void Update()
     {
+
+        timer += Time.deltaTime;
+
         // Verificar si la animación  ha terminado
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-        if (stateInfo.normalizedTime >= 1f && !anim.IsInTransition(0))
+        if (stateInfo.normalizedTime >= 1f && !anim.IsInTransition(0) && timer >= duration)
         {
             Debug.Log("Animación acabada.");
             anim.ResetTrigger("Sweep1");
             anim.ResetTrigger("Sweep2");
             // Cambio de estado
+            Exit();
             States randomState = GetRandomEnumValue<States>(States.Sweep);
             actualBoss.ChangeStateKey(randomState);
         }
