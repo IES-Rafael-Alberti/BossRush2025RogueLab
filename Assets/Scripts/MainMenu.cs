@@ -13,12 +13,19 @@ public class MainMenu : MonoBehaviour
 
     public void Settings()
     {
-        //Show canvas settings and to hind play and quit buttons
-        Buttons.SetActive(false);
+        SaveCurrentScene();
+        SceneManager.LoadScene("SettingsMenu");
     }
 
     public void Exit()
     {
         Application.Quit();
+    }
+    public void SaveCurrentScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("SavedScene", sceneName);
+        PlayerPrefs.Save();
+        Debug.Log("Escena guardada: " + sceneName);
     }
 }
