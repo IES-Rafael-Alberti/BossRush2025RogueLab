@@ -99,6 +99,19 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+
+        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")))
+        {
+            Debug.Log("Lost hp by " + collision.gameObject.tag);
+            Debug.Log(gameManager.GetHealth());
+            gameManager.SetHealth(1, null);
+            IsDead();
+        }
+
+    }
+
     /*private IEnumerator Invurnerability()
     {
         Physics2D.IgnoreLayerCollision(6, 3, true);

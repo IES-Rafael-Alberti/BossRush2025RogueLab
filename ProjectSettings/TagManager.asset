@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Bullet
+  - Heal
   layers:
   - Default
   - TransparentFX

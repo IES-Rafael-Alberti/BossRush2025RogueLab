@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,10 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private int combo;
     [SerializeField] private int maxCombo = 0;
+    [SerializeField] private int maxHealth;
     [SerializeField] private int health;
     [SerializeField] private AudioSource actualMusic;
     [SerializeField] private BeatScroller BS;
     [SerializeField] private bool startPlaying;
+    [SerializeField] private Healing healing;
 
 
     public static GameManager Instance
@@ -29,6 +32,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        health = maxHealth;
+
+        healing = GameObject.Find("Coliseo").transform.Find("ARENA").transform.Find("Healing Item").GetComponent<Healing>();
     }
 
     private void Update()
@@ -84,6 +94,11 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("GM: Health removed");
                     health -= 1;
+                    Debug.Log("Heal item: "+healing.GameObject());
+                    if (health < (maxHealth/2))
+                    {
+                        healing.Show();
+                    }
                 }
                 else
                 {
