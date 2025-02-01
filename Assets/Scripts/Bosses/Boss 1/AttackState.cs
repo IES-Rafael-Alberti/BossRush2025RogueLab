@@ -29,7 +29,6 @@ public class AttackState : State
         timer += Time.deltaTime;
 
         // Verificar si la animación  ha terminado
-        Debug.Log("Animación");
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.normalizedTime >= 1f && !anim.IsInTransition(0) && timer >= duration)

@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int flashNumbers;
     [SerializeField] private GameManager gameManager;
     private PlayerShoot playerShoot;
+    public Renderer playerBodyRenderer;
+    public Renderer playerHairRenderer;
+    public Renderer playerFrontHairRenderer;
 
     private Animator animator;
 
@@ -22,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded; // Verificar si est� en el suelo
     private bool right = true;
     float velocHorizontal = 1;
+    private Color originalColor;
+    private bool invincible = false;
 
     void Start()
     {
@@ -29,6 +34,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerShoot = GetComponent<PlayerShoot>();
         animator = GetComponent<Animator>();
+        originalColor = playerBodyRenderer.material.color;
     }
 
     void Update()
@@ -89,8 +95,9 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")))
+        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")) || invincible == false)
         {
+            TakeDamage();
             Debug.Log("Lost hp by " + collision.gameObject.tag);
             Debug.Log(gameManager.GetHealth());
             gameManager.SetHealth(1, null);
@@ -102,14 +109,44 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")))
+        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")) || invincible == false)
         {
+            TakeDamage();
             Debug.Log("Lost hp by " + collision.gameObject.tag);
             Debug.Log(gameManager.GetHealth());
             gameManager.SetHealth(1, null);
             IsDead();
         }
 
+    }
+
+    public void TakeDamage()
+    {
+        StartCoroutine(FlashRed());
+    }
+
+    IEnumerator FlashRed()
+    {
+        // si tubieramos el modelo unido podria cambiar el color a todos a la vez pero como esta separado tengo que hacerlo asi 
+        for (int i = 0; i < 6; i++)
+        {
+            invincible = true;
+            if (i % 2 == 0)
+            {
+                playerBodyRenderer.material.color = Color.red;
+                playerHairRenderer.material.color = Color.red;
+                playerFrontHairRenderer.material.color = Color.red;
+            }
+            else
+            {
+                playerBodyRenderer.material.color = originalColor;
+                playerHairRenderer.material.color = originalColor;
+                playerFrontHairRenderer.material.color = originalColor;
+
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        invincible = false;
     }
 
     /*private IEnumerator Invurnerability()
