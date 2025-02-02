@@ -6,8 +6,6 @@ public class ButtonsController : MonoBehaviour
     public Sprite defaultImage;
     public Sprite pressedImage;
 
-    public KeyCode keyPressed;
-
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
@@ -16,12 +14,12 @@ public class ButtonsController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(keyPressed))
+        if (Input.GetButton("Fire1") || Input.GetKeyDown("space") || Input.GetKeyDown("e"))
         {
             SR.sprite = pressedImage;
         }
 
-        if (Input.GetKeyUp(keyPressed))
+        if (Input.GetButton("Fire1") || Input.GetKeyDown("space") || Input.GetKeyDown("e"))
         {
             SR.sprite = defaultImage;
         }
