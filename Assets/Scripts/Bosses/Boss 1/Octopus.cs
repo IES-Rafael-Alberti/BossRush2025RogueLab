@@ -15,6 +15,10 @@ public class Octopus : BossController
     State currentState;
     Dictionary<States, State> statesDict = new Dictionary<States, State>();
 
+    public AudioSource sweepSound;
+    public AudioSource attackSound;
+    public AudioSource inkSound;
+
     void Start()
     {
         BossRenderer = GetComponent<Renderer>();
@@ -89,6 +93,21 @@ public class Octopus : BossController
             Destroy(gameObject);
             Debug.Log("Muerto");
         }
+    }
+
+    public AudioSource GetSweepSound()
+    {
+        return sweepSound;
+    }
+
+    public AudioSource GetAttackSound()
+    {
+        return attackSound;
+    }
+
+    public AudioSource GetInkSound()
+    {
+        return inkSound;
     }
 
 }

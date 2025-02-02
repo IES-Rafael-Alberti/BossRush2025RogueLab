@@ -11,6 +11,7 @@ public class SweepState : State
     private string Sweep;
     private float timer = 0f;
     private float duration = 2f;
+    private AudioSource audioSource;
 
     public override void Entry()
     {
@@ -18,10 +19,12 @@ public class SweepState : State
         actualBoss = (Octopus)boss;
         Debug.Log("Sweep State Entered");
         anim = actualBoss.GetComponent<Animator>();
+        audioSource = actualBoss.GetSweepSound();
         // Animación
         int num = UnityEngine.Random.Range(1, 3);
         Sweep = num == 1 ? "Sweep1" : "Sweep2";
         anim.SetTrigger(Sweep);
+        PlayAudio(audioSource);
         timer = 0f; // Reinicia el contador
     }
 

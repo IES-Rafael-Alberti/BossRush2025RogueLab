@@ -9,20 +9,20 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        // Obtén la dirección hacia el ratón en el mundo
+        // Obtï¿½n la direcciï¿½n hacia el ratï¿½n en el mundo
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 15f; // Ajusta la distancia de la cámara
+        mousePosition.z = 15f; // Ajusta la distancia de la cï¿½mara
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        // Calcula la dirección hacia el ratón
+        // Calcula la direcciï¿½n hacia el ratï¿½n
         targetDirection = (worldMousePosition - transform.position).normalized;
 
-        Destroy(gameObject, lifetime); // Destruir proyectil después de un tiempo
+        Destroy(gameObject, lifetime); // Destruir proyectil despuï¿½s de un tiempo
     }
 
     void Update()
     {
-        // Mueve la bala en la dirección hacia el ratón desde el firePoint
+        // Mueve la bala en la direcciï¿½n hacia el ratï¿½n desde el firePoint
         transform.Translate(targetDirection * speed * Time.deltaTime);
     }
 }

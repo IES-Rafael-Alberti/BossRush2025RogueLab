@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class State : IState
 {
@@ -26,6 +27,14 @@ public class State : IState
     public virtual void Exit()
     {
 
+    }
+
+    public virtual void PlayAudio(AudioSource audioSource)
+    {
+        if (audioSource != null && audioSource.clip != null)
+        {
+            audioSource.Play();
+        }
     }
 
     public virtual T GetRandomEnumValue<T>(T exclude) where T : Enum

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class SpitState : State
@@ -16,6 +17,7 @@ public class SpitState : State
     private GameObject spitInstance;
     private float timer = 0f;
     private float duration = 2f;
+    private AudioSource audioSource;
 
     public override void Entry()
     {
@@ -25,10 +27,11 @@ public class SpitState : State
         spitPos = boss.transform.position + (new Vector3(0, 2.5f, 0)); //Posici�n donde se instancia el prefab
         spitRotation = boss.transform.rotation;
         Debug.Log("Spit State Entered");
-
+        audioSource = actualBoss.GetSweepSound();
         // Instancia la tinta
         Debug.Log(spitPos + " , " + spitRotation);
         spitInstance = UnityEngine.Object.Instantiate(spit, spitPos, Quaternion.identity);
+        PlayAudio(audioSource);
         Debug.Log("Spit instantiated successfully: " + spitInstance.name);
         timer = 0f; // Reinicia el contador
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
     float velocHorizontal = 1;
     private Color originalColor;
     private bool invincible = false;
+
+    public AudioSource jumpSound;
+    public AudioSource hurtSound;
 
     void Start()
     {
@@ -74,6 +78,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+            PlaySound(jumpSound);
         }
 
         // Aplicar gravedad
@@ -101,9 +106,23 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Lost hp by " + collision.gameObject.tag);
             Debug.Log(gameManager.GetHealth());
             gameManager.SetHealth(1, null);
+            PlaySound(hurtSound);
             IsDead();
         }
         
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if ((collision.gameObject.CompareTag("EnemyBullet") && !playerShoot.IsParrying()) || (collision.gameObject.CompareTag("Enemy")) || invincible == false)
+        {
+            TakeDamage();
+            Debug.Log("Lost hp by " + collision.gameObject.tag);
+            Debug.Log(gameManager.GetHealth());
+            gameManager.SetHealth(1, null);
+            PlaySound(hurtSound);
+            IsDead();
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -171,6 +190,14 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Muerto");
+        }
+    }
+
+    void PlaySound(AudioSource audio)
+    {
+        if (audio != null && audio.clip != null)
+        {
+            audio.Play();
         }
     }
 

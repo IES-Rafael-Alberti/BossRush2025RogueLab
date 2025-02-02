@@ -38,6 +38,8 @@ public class PlayerShoot : MonoBehaviour
     public float fireRate = 0.5f;       // Tiempo entre disparos
     private float nextFireTime = 0f;
 
+    public AudioSource shootSound;
+
     void Update()
     {
         shootImage.image = img1;
@@ -47,7 +49,8 @@ public class PlayerShoot : MonoBehaviour
             {
                 Shoot();
                 nextFireTime = Time.time + fireRate;
-            }
+                PlaySound(shootSound);
+        }
 
         // Ocultar la imagen despu�s de un tiempo
         if (shootImage.isImageVisible && Time.time > nextFireTime - fireRate + displayTime)
@@ -71,7 +74,7 @@ public class PlayerShoot : MonoBehaviour
         }
         if (!(collision.gameObject.CompareTag("EnemyBullet") && !parry))
         {
-            collision.rigidbody.AddForce(eniemiPosition.position * 5, ForceMode.Impulse);
+            collision.rigidbody.AddForce(eniemiPosition.position * 5, ForceMode.Impulse);         
         }
     }
 
@@ -104,6 +107,14 @@ public class PlayerShoot : MonoBehaviour
         {
             image.image.enabled = false;
             image.isImageVisible = false;
+        }
+    }
+
+    void PlaySound(AudioSource audio)
+    {
+        if (audio != null && audio.clip != null)
+        {
+            audio.Play();
         }
     }
 }

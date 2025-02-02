@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AttackState : State
 {
@@ -11,6 +12,7 @@ public class AttackState : State
     private string Attack = "Attack1";
     private float timer = 0f;
     private float duration = 2f;
+    private AudioSource audioSource;
 
     public override void Entry()
     {
@@ -18,8 +20,10 @@ public class AttackState : State
         actualBoss = (Octopus)boss;
         Debug.Log("Attack State Entered");
         anim = actualBoss.GetComponent<Animator>();
+        audioSource = actualBoss.GetAttackSound();
         // Animación
         anim.SetTrigger(Attack);
+        PlayAudio(audioSource);
         timer = 0f; // Reinicia el contador
     }
 

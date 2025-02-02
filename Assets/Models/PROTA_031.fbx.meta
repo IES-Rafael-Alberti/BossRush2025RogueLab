@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd6ae620c54da0b4d92a7228696f2f12
+guid: 502f71851c0419243b8ef0efb9f03963
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_UV Grid
-    second: {fileID: 2100000, guid: dd2ed2918dd10dc489d5b22747352d2b, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: 8c9bef9801fab4d48901c0ffde83237b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_UV Grid.001
-    second: {fileID: 2100000, guid: aa4792d8a0f753a42940870fdb91d284, type: 2}
+      name: Material.001
+    second: {fileID: 2100000, guid: 3b9c98f99b6db794a8cf63090e85ac03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: dc006ab0cf9bd19478ec5250da645ec2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TEXTURA
+    second: {fileID: 2100000, guid: 2357a3315b078aa48b6099a03066e710, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
